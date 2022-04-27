@@ -10,7 +10,8 @@ namespace DoctorsAppointment.Services.Patients.Contracts
     public interface PatientService
     {
         void Add(AddPatientDto dto);
-        //IList<GetDoctorDto> GetAll();
+        IList<GetPatientDto> GetAll();
+        void Update(UpdatePatientDto dto, string nationalId);
         //void Update(UpdateDoctorDto dto, string nationalId);
     }
 }

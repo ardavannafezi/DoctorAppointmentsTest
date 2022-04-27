@@ -1,5 +1,6 @@
 ﻿using BookStore.Persistence.EF;
 using DoctorsAppointment.Services.Doctors.Contracts;
+using DoctorsAppointment.Services.Patients.Contract;
 using DoctorsAppointmet.Entities;
 using System;
 using System.Collections.Generic;
@@ -23,5 +24,25 @@ namespace DoctorsAppointment.Presistance.Ef.Patients
             _dataContext.Patinets.Add(patient);
         }
 
+        public Patient FindByNationalId(string nationalId)
+        {
+            return _dataContext.Patinets.FirstOrDefault(x => x.NationalId == nationalId);
+        }
+
+        public IList<GetPatientDto> GetAll()
+        {
+            return _dataContext.Patinets
+                .Select(x => new GetPatientDto
+                {
+                    Name = x.Name,
+                    LastName = x.LastName,
+                    NationalId = x.NationalId
+                }).ToList();
+        }
+
+        public void Update(Patient patient)
+        {
+            _dataContext.Update(patient);
+        }
     }
 }

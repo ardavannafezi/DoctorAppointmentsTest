@@ -1,4 +1,5 @@
 ﻿using DoctorsAppointment.Infrastructure.Application;
+using DoctorsAppointment.Services.Patients.Contract;
 using DoctorsAppointmet.Entities;
 using System;
 using System.Collections.Generic;
@@ -11,8 +12,8 @@ namespace DoctorsAppointment.Services.Doctors.Contracts
     public interface PatientRepository : Service
     {
         void Add(Patient patient);
-        //IList<GetDoctorDto> GetAll();
-        //void Update(Doctor doctor);
-        //Doctor FindByNationalId(string nationalId);
+        IList<GetPatientDto> GetAll();
+        void Update(Patient patient);
+        Patient FindByNationalId(string nationalId);
     }
 }

@@ -37,5 +37,22 @@ namespace DoctorsAppointment.Services.Patients
             _repository.Add(patient);
             _unitOfWork.Commit();
         }
+
+        public IList<GetPatientDto> GetAll()
+        {
+            return _repository.GetAll();
+        }
+
+        public void Update(UpdatePatientDto dto, string nationalId)
+        {
+            var patient = _repository.FindByNationalId(nationalId);
+            
+            patient.LastName = dto.LastName;
+            patient.Name = dto.Name;
+            patient.NationalId = dto.NationalId;
+
+            _repository.Update(patient);
+            _unitOfWork.Commit();
+        }
     }
 }

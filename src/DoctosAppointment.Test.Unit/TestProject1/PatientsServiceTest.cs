@@ -52,52 +52,51 @@ namespace Test.Unit
             };
         }
 
-        //[Fact]
-        //public void GetAll_Doctor_show_all_doctors_in_database()
-        //{
-        //    CreateDoctorInDataBase();
+        [Fact]
+        public void GetAll_Gets_All_Patients_in_the_databse()
+        {
+            CreatePatientInDataBase();
 
-        //    var expected = _sut.GetAll();
-        //    expected.Should().HaveCount(1);
-        //    expected.Should().Contain(_ => _.NationalId == "123");
+            var expected = _sut.GetAll();
+            expected.Should().HaveCount(1);
+            expected.Should().Contain(_ => _.NationalId == "123");
 
-        //}
+        }
 
-        //private Doctor CreateDoctorInDataBase()
-        //{
-        //    var doctor = new Doctor
-        //    {
-        //        LastName = "dummy",
-        //        Field = "dummy",
-        //        Name = "dummy",
-        //        NationalId = "123",
-        //    };
-        //    _dataContext.Manipulate(_ =>
-        //        _.Doctors.Add(doctor));
+        private Patient CreatePatientInDataBase()
+        {
+            var patient = new Patient
+            {
+                LastName = "dummy",
+                Name = "dummy",
+                NationalId = "123",
+            };
+            _dataContext.Manipulate(_ =>
+                _.Patinets.Add(patient));
 
-        //    return doctor;
-        //}
+            return patient;
+        }
 
-        //[Fact]
-        //public void Update_Doctor_Update_All_Doctors_informations_with_given_informations()
-        //{
-        //    var doctor = CreateDoctorInDataBase();
 
-        //    string nationalId = "123";
-        //    var dto = new UpdateDoctorDto
-        //    {
-        //        NationalId = "123",
-        //        Field = "field",
-        //        Name = "dummy2",
-        //        LastName = "Dummy2",
-        //    };
+        [Fact]
+        public void Update_patient_Update_All_patient_informations_with_given_informations()
+        {
+            var patient = CreatePatientInDataBase();
 
-        //     _sut.Update(dto, nationalId);
+            string nationalId = "123";
+            var dto = new UpdatePatientDto
+            {
+                NationalId = "123",
+                Name = "dummy2",
+                LastName = "Dummy2",
+            };
 
-        //    var expected = _dataContext.Doctors
-        //        .FirstOrDefault(_ => _.NationalId == nationalId);
-        //    expected.Name.Should().Be(dto.Name);
-        //}
+            _sut.Update(dto, nationalId);
+
+            var expected = _dataContext.Patinets
+                .FirstOrDefault(_ => _.NationalId == nationalId);
+            expected.Name.Should().Be(dto.Name);
+        }
 
 
     }
