@@ -30,6 +30,12 @@ namespace DoctorsAppointment.Services.Appointments
                PatientNationalId = dto.PatientNationalId,
                Date = dto.Date,
             };
+
+            bool isExist = _repository.isExist(dto.DoctorNationalId, dto.PatientNationalId);
+            if (isExist ==true)
+            {
+                throw new AppointmentAlreadyExist();
+            }
             _repository.Add(Appointment);
             _unitOfWork.Commit();
         }

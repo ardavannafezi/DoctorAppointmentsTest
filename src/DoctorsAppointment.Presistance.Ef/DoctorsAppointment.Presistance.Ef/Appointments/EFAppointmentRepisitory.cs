@@ -40,6 +40,19 @@ namespace DoctorsAppointment.Presistance.EF.Appointments
             return _dataContext.Appointments.FirstOrDefault(_ => _.Id == id);
         }
 
+        public bool isExist(string doctorNationalId, string patientNationalId)
+        {
+            if(_dataContext.Appointments.Any(_ => _.DoctorNationalId == doctorNationalId 
+                && _.PatientNationalId== patientNationalId))
+            {
+                return true;
+            }
+            else
+            {
+               return false;
+            }
+        }
+
         public void Update(Appointment appointment)
         {
             _dataContext.Appointments.Update(appointment);

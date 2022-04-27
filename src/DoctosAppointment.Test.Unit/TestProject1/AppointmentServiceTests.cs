@@ -44,6 +44,18 @@ namespace Test.Unit
             _dataContext.Appointments.Should().Contain(_ => _.DoctorNationalId == dto.DoctorNationalId );
 
         }
+
+        [Fact]
+        public void If_duplicated_Appointment_is_in_database_throw_AppointmentAlreadyExist_exeption()
+        {
+            CreadeDoctorAndPatiendInDatabase();
+            CreateAppointmentInDataBase();
+            var dto = GenerateAppointmentDto();
+
+            Action expected = () => _sut.Add(dto);
+            expected.Should().ThrowExactly<AppointmentAlreadyExist>();
+        }
+
         private AddAppointmentDto GenerateAppointmentDto()
         {
             return new AddAppointmentDto
@@ -104,6 +116,7 @@ namespace Test.Unit
 
             return appointment;
         }
+
 
         [Fact]
         public void Update__Update_All_Appointments_informations_with_given_informations()

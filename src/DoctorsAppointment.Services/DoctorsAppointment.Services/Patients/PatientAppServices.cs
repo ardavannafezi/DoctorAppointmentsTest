@@ -2,7 +2,6 @@
 using DoctorsAppointment.Services.Doctors.Contracts;
 using DoctorsAppointment.Services.Patients.Contract;
 using DoctorsAppointment.Services.Patients.Contracts;
-using DoctorsAppointment.Services.Patients.Exeptions;
 using DoctorsAppointmet.Entities;
 using System;
 using System.Collections.Generic;
