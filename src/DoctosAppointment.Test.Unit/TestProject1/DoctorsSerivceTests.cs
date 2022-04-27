@@ -10,7 +10,7 @@ using System;
 using System.Linq;
 using Xunit;
 
-namespace TestProject1
+namespace Test.Unit
 {
     public class DoctorsSerivceTests
     {

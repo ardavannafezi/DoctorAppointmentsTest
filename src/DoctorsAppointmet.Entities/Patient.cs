@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DoctorsAppointmet.Entities
 {
-    public class Patinet : Person
+    public class Patient : Person
     {
         public List<Appointment> Appointments { get; set; } = new List<Appointment>();
 

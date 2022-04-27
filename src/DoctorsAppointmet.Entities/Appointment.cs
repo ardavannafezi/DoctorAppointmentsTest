@@ -14,6 +14,6 @@ namespace DoctorsAppointmet.Entities
         public DateTime Date { get; set; }
 
         public Doctor Doctor { get; set; }
-        public Patinet Patinet { get; set; }
+        public Patient Patinet { get; set; }
     }
 }

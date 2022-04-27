@@ -4,9 +4,9 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace DoctorsAppointment.Persistence.EF.Patients
 {
-    public class PatientsEntityMap : IEntityTypeConfiguration<Patinet>
+    public class PatientsEntityMap : IEntityTypeConfiguration<Patient>
     {
-        public void Configure(EntityTypeBuilder<Patinet> _)
+        public void Configure(EntityTypeBuilder<Patient> _)
         {
             _.ToTable("Patients");
 

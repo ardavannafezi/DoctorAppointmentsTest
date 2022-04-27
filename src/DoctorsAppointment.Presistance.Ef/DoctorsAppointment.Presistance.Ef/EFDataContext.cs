@@ -30,7 +30,7 @@ namespace BookStore.Persistence.EF
         }
        
         public DbSet<Doctor> Doctors { get; set; }
-        public DbSet<Patinet> Patinets { get; set; }
+        public DbSet<Patient> Patinets { get; set; }
         public DbSet<Appointment> Appointments { get; set; }
 
     }

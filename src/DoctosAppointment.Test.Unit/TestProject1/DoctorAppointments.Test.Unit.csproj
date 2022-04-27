@@ -21,7 +21,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\DoctorsAppointment.Presistance.Ef\DoctorsAppointment.Presistance.Ef\DoctorsAppointment.Presistance.Ef.csproj" />
+    <ProjectReference Include="..\..\DoctorsAppointment.Presistance.Ef\DoctorsAppointment.Presistance.Ef\DoctorsAppointment.Presistance.EF.csproj" />
     <ProjectReference Include="..\..\DoctorsAppointment.Services\DoctorsAppointment.Services\DoctorsAppointment.Services.csproj" />
     <ProjectReference Include="..\..\DoctorsAppointmet.Entities\DoctorsAppointmet.Entities.csproj" />
   </ItemGroup>
