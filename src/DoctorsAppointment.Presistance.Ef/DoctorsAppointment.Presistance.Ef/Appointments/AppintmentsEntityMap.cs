@@ -13,7 +13,8 @@ namespace DoctorsAppointment.Persistence.EF.Appointments
                 _.HasKey(p => p.Id);
 
                 _.Property(_ => _.Id)
-                .ValueGeneratedOnAdd();
+                .ValueGeneratedOnAdd()
+                .UseIdentityColumn();
 
                 _.Property(_ => _.Date);
 

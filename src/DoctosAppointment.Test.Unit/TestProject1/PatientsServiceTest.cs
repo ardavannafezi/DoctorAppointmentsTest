@@ -97,7 +97,5 @@ namespace Test.Unit
                 .FirstOrDefault(_ => _.NationalId == nationalId);
             expected.Name.Should().Be(dto.Name);
         }
-
-
     }
 }

@@ -12,6 +12,5 @@ namespace DoctorsAppointment.Services.Patients.Contracts
         void Add(AddPatientDto dto);
         IList<GetPatientDto> GetAll();
         void Update(UpdatePatientDto dto, string nationalId);
-        //void Update(UpdateDoctorDto dto, string nationalId);
     }
 }
