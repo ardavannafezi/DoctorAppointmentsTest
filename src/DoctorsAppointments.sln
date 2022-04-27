@@ -3,21 +3,21 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.1.32210.238
 MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DoctorsAppointmet.Entities", "DoctorsAppointmet.Entities\DoctorsAppointmet.Entities.csproj", "{8781B381-26F2-4258-832E-0168D925CDC4}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DoctorsAppointment.Presistance.EF", "DoctorsAppointment.Presistance.EF\DoctorsAppointment.Presistance.EF.csproj", "{2AC4BA91-2FC0-4B54-9008-7A8B4F35522F}"
+EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{CA0D5BC0-C703-47CC-BFD0-C6048832691D}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test.Unit", "Test.Unit", "{2798693B-0894-43CB-8DA7-40647E07F68A}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DoctorsAppointmet.Entities", "DoctorsAppointmet.Entities\DoctorsAppointmet.Entities.csproj", "{8781B381-26F2-4258-832E-0168D925CDC4}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DoctorsAppointment.Infrastructure", "DoctorsAppointment.Infrastructure\DoctorsAppointment.Infrastructure.csproj", "{A27A06C7-B9F4-4772-BF1E-45BADE16B5C2}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DoctorsAppointment.Migration", "DoctorsAppointment.Migration\DoctorsAppointment.Migration.csproj", "{3876FA7E-0D11-4D74-8044-A0C71160D6BF}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DoctorAppointments.Test.Unit", "DoctosAppointment.Test.Unit\TestProject1\DoctorAppointments.Test.Unit.csproj", "{9C984F72-5653-4ECF-836C-31478E850AC6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DoctorAppointments.UnitTest", "DoctosAppointment.UnitTest\DoctorAppointments.UnitTest.csproj", "{9C984F72-5653-4ECF-836C-31478E850AC6}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DoctorsAppointment.Presistance.EF", "DoctorsAppointment.Presistance.Ef\DoctorsAppointment.Presistance.Ef\DoctorsAppointment.Presistance.EF.csproj", "{2AC4BA91-2FC0-4B54-9008-7A8B4F35522F}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DoctorsAppointment.Services", "DoctorsAppointment.Services\DoctorsAppointment.Services\DoctorsAppointment.Services.csproj", "{0B2A572F-DF2F-4ED0-A0E9-8CDDB9C528D1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DoctorsAppointment.Services", "DoctorsAppointment.Services\DoctorsAppointment.Services.csproj", "{0B2A572F-DF2F-4ED0-A0E9-8CDDB9C528D1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -29,6 +29,10 @@ Global
 		{8781B381-26F2-4258-832E-0168D925CDC4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8781B381-26F2-4258-832E-0168D925CDC4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8781B381-26F2-4258-832E-0168D925CDC4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2AC4BA91-2FC0-4B54-9008-7A8B4F35522F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2AC4BA91-2FC0-4B54-9008-7A8B4F35522F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2AC4BA91-2FC0-4B54-9008-7A8B4F35522F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2AC4BA91-2FC0-4B54-9008-7A8B4F35522F}.Release|Any CPU.Build.0 = Release|Any CPU
 		{A27A06C7-B9F4-4772-BF1E-45BADE16B5C2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{A27A06C7-B9F4-4772-BF1E-45BADE16B5C2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A27A06C7-B9F4-4772-BF1E-45BADE16B5C2}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -41,10 +45,6 @@ Global
 		{9C984F72-5653-4ECF-836C-31478E850AC6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9C984F72-5653-4ECF-836C-31478E850AC6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9C984F72-5653-4ECF-836C-31478E850AC6}.Release|Any CPU.Build.0 = Release|Any CPU
-		{2AC4BA91-2FC0-4B54-9008-7A8B4F35522F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2AC4BA91-2FC0-4B54-9008-7A8B4F35522F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{2AC4BA91-2FC0-4B54-9008-7A8B4F35522F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{2AC4BA91-2FC0-4B54-9008-7A8B4F35522F}.Release|Any CPU.Build.0 = Release|Any CPU
 		{0B2A572F-DF2F-4ED0-A0E9-8CDDB9C528D1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{0B2A572F-DF2F-4ED0-A0E9-8CDDB9C528D1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0B2A572F-DF2F-4ED0-A0E9-8CDDB9C528D1}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -55,10 +55,10 @@ Global
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{8781B381-26F2-4258-832E-0168D925CDC4} = {CA0D5BC0-C703-47CC-BFD0-C6048832691D}
+		{2AC4BA91-2FC0-4B54-9008-7A8B4F35522F} = {CA0D5BC0-C703-47CC-BFD0-C6048832691D}
 		{A27A06C7-B9F4-4772-BF1E-45BADE16B5C2} = {CA0D5BC0-C703-47CC-BFD0-C6048832691D}
 		{3876FA7E-0D11-4D74-8044-A0C71160D6BF} = {CA0D5BC0-C703-47CC-BFD0-C6048832691D}
 		{9C984F72-5653-4ECF-836C-31478E850AC6} = {2798693B-0894-43CB-8DA7-40647E07F68A}
-		{2AC4BA91-2FC0-4B54-9008-7A8B4F35522F} = {CA0D5BC0-C703-47CC-BFD0-C6048832691D}
 		{0B2A572F-DF2F-4ED0-A0E9-8CDDB9C528D1} = {CA0D5BC0-C703-47CC-BFD0-C6048832691D}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution

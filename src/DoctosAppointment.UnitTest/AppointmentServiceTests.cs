@@ -14,8 +14,8 @@ using System.Collections.Generic;
 using System.Linq;
 using Xunit;
 
-namespace Test.Unit
-{
+namespace UnitTest
+{ 
     public class AppointmentServiceTests
     {
 
@@ -211,6 +211,10 @@ namespace Test.Unit
             _dataContext.Manipulate(_ =>
                 _.Doctors.Add(doctor));
         }
+
+
+
+        
 
     }
 }
