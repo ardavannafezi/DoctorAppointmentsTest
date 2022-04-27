@@ -14,5 +14,6 @@ namespace DoctorsAppointment.Services.Doctors.Contracts
         IList<GetDoctorDto> GetAll();
         void Update(Doctor doctor);
         Doctor FindByNationalId(string nationalId);
+        bool isDcotorExist(string nationalId);
     }
 }

@@ -32,6 +32,13 @@ namespace DoctorsAppointment.Services.Doctors
                 NationalId = dto.NationalId,
                 Field = dto.Field,
             };
+
+            bool isDoctorExist = _repository.isDcotorExist(dto.NationalId);
+            if (isDoctorExist == true)
+            {
+                throw new DoctorAlreadyExist();
+            }
+            
             _repository.Add(doctor);
             _unitOfWork.Commit();
         }

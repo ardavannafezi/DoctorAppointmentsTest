@@ -55,6 +55,16 @@ namespace Test.Unit
         }
 
         [Fact]
+        public void If_duplicated_doctor_is_in_database_throw_DoctorAlreadyExist_exeption()
+        {
+            CreateDoctorInDataBase();
+            var doctor = GenerateDoctorDto();
+
+            Action expected = () => _sut.Add(doctor);
+            expected.Should().ThrowExactly<DoctorAlreadyExist>();
+        }
+
+        [Fact]
         public void GetAll_Doctor_show_all_doctors_in_database()
         {
             CreateDoctorInDataBase();

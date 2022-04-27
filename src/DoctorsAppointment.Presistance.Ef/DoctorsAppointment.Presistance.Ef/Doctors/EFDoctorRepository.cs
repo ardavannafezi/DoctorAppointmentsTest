@@ -46,5 +46,19 @@ namespace DoctorsAppointment.Presistance.Ef.Doctors
         {
             return _dataContext.Doctors.Find(nationalId);
         }
+
+        public bool isDcotorExist(string nationalId)
+        {
+            
+            if (_dataContext.Doctors.Any(_ => _.NationalId == nationalId))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+
+        }
     }
 }
