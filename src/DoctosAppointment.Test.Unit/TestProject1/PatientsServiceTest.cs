@@ -52,6 +52,20 @@ namespace Test.Unit
             };
         }
 
+
+        [Fact]
+        public void If_duplicated_Patient_is_in_database_throw_PatientAlreadyExist_exeption()
+        {
+            CreatePatientInDataBase();
+            var patient = GeneratePatientDto();
+
+            Action expected = () => _sut.Add(patient);
+            expected.Should().ThrowExactly<PatientAlreadyExist>();
+        }
+
+
+
+
         [Fact]
         public void GetAll_Gets_All_Patients_in_the_databse()
         {

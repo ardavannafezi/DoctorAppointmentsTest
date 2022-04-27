@@ -40,6 +40,18 @@ namespace DoctorsAppointment.Presistance.Ef.Patients
                 }).ToList();
         }
 
+        public bool isExist(string nationalId)
+        {
+            if(_dataContext.Patinets.Any(_ => _.NationalId == nationalId) == true)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
         public void Update(Patient patient)
         {
             _dataContext.Update(patient);
