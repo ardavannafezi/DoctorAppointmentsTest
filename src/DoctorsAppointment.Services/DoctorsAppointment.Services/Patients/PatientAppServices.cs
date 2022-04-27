@@ -2,6 +2,7 @@
 using DoctorsAppointment.Services.Doctors.Contracts;
 using DoctorsAppointment.Services.Patients.Contract;
 using DoctorsAppointment.Services.Patients.Contracts;
+using DoctorsAppointment.Services.Patients.Exeptions;
 using DoctorsAppointmet.Entities;
 using System;
 using System.Collections.Generic;
@@ -34,6 +35,13 @@ namespace DoctorsAppointment.Services.Patients
                 Name = dto.Name,
                 NationalId = dto.NationalId,
             };
+
+            bool isExist =  _repository.isExist(dto.NationalId);
+            if (isExist ==true)
+            {
+                throw new PatientAlreadyExist();
+            }
+            
             _repository.Add(patient);
             _unitOfWork.Commit();
         }
@@ -46,7 +54,15 @@ namespace DoctorsAppointment.Services.Patients
         public void Update(UpdatePatientDto dto, string nationalId)
         {
             var patient = _repository.FindByNationalId(nationalId);
-            
+
+            bool isExist = _repository.isExist(dto.NationalId);
+
+            if (isExist == true && dto.NationalId != nationalId)
+            {
+                throw new NationalIdExistForAnotherPatient();
+            }
+
+
             patient.LastName = dto.LastName;
             patient.Name = dto.Name;
             patient.NationalId = dto.NationalId;
@@ -54,5 +70,6 @@ namespace DoctorsAppointment.Services.Patients
             _repository.Update(patient);
             _unitOfWork.Commit();
         }
+
     }
 }

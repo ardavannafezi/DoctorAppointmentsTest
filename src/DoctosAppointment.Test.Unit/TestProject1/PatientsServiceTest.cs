@@ -9,6 +9,7 @@ using DoctorsAppointment.Services.Patients.Contracts;
 using DoctorsAppointmet.Entities;
 using FluentAssertions;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using Xunit;
 
@@ -98,12 +99,7 @@ namespace Test.Unit
             var patient = CreatePatientInDataBase();
 
             string nationalId = "123";
-            var dto = new UpdatePatientDto
-            {
-                NationalId = "123",
-                Name = "dummy2",
-                LastName = "Dummy2",
-            };
+            var dto = GenerateUpdatePatientDto("123");
 
             _sut.Update(dto, nationalId);
 
@@ -111,5 +107,44 @@ namespace Test.Unit
                 .FirstOrDefault(_ => _.NationalId == nationalId);
             expected.Name.Should().Be(dto.Name);
         }
+
+
+        [Fact]
+        public void Update_checks_if_another_Patient_exist_with_the_new_given_nationalId()
+        {
+            CreatePatientListInDatabse();
+
+            string nationalId = "123";
+            var dto = GenerateUpdatePatientDto("1234");
+
+
+            Action expected = () => _sut.Update(dto, nationalId);
+            expected.Should().ThrowExactly<NationalIdExistForAnotherPatient>();
+        }
+
+
+        public UpdatePatientDto GenerateUpdatePatientDto(string id)
+        {
+            return new UpdatePatientDto
+            {
+                NationalId = id,
+                Name = "dummy2",
+                LastName = "Dummy2",
+            };
+        }
+
+        private void CreatePatientListInDatabse()
+        {
+            var patients = new List<Patient>
+            {
+                new Patient { NationalId= "123" , Name="dummy",LastName="dummy"},
+                new Patient { NationalId= "1234" , Name="dummy",LastName="dummy"},
+                new Patient { NationalId= "12356" , Name="dummy",LastName="dummy"},
+
+            };
+            _dataContext.Manipulate(_ =>
+            _.Patinets.AddRange(patients));
+        }
+
     }
 }
