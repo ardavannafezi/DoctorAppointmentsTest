@@ -36,6 +36,12 @@ namespace DoctorsAppointment.Services.Appointments
             {
                 throw new AppointmentAlreadyExist();
             }
+
+            int AppointmentPerDay = _repository.AppointmentsPerDay(dto.DoctorNationalId, dto.Date);
+            if (AppointmentPerDay >= 5)
+            {
+                throw new DoctorsDayIsFull();
+            }
             _repository.Add(Appointment);
             _unitOfWork.Commit();
         }

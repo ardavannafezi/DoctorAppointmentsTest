@@ -10,6 +10,7 @@ using DoctorsAppointment.Services.Doctors.Contracts;
 using DoctorsAppointmet.Entities;
 using FluentAssertions;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using Xunit;
 
@@ -39,9 +40,11 @@ namespace Test.Unit
         public void Add_add_appointment_porperly()
         {
             CreadeDoctorAndPatiendInDatabase();
-            var dto = GenerateAppointmentDto();
+            var dto = GenerateAppointmentDto("123");
             _sut.Add(dto);
-            _dataContext.Appointments.Should().Contain(_ => _.DoctorNationalId == dto.DoctorNationalId );
+            _dataContext.Appointments.Should()
+                .Contain(_ => _.DoctorNationalId == dto.DoctorNationalId 
+                && _.PatientNationalId ==dto.PatientNationalId);
 
         }
 
@@ -50,18 +53,73 @@ namespace Test.Unit
         {
             CreadeDoctorAndPatiendInDatabase();
             CreateAppointmentInDataBase();
-            var dto = GenerateAppointmentDto();
+            var dto = GenerateAppointmentDto("123");
 
             Action expected = () => _sut.Add(dto);
             expected.Should().ThrowExactly<AppointmentAlreadyExist>();
         }
 
-        private AddAppointmentDto GenerateAppointmentDto()
+        [Fact]
+        public void Doctor_cant_have_more_than_five_patient_exeption_thrown()
+        {
+            CreateDoctorWithFivePatients();
+            CreateFiveAppointments();
+            var dto = GenerateAppointmentDto("146548");
+
+            Action expected = () => _sut.Add(dto);
+            expected.Should().ThrowExactly<DoctorsDayIsFull>();
+        }
+
+
+        private void CreateDoctorWithFivePatients()
+        {
+            var patients = new List<Patient>
+            {
+                new Patient { NationalId= "12" , Name="dummy",LastName="dummy"},
+                new Patient { NationalId= "123" , Name="dummy",LastName="dummy"},
+                new Patient { NationalId= "1234" , Name="dummy",LastName="dummy"},
+                new Patient { NationalId= "12345" , Name="dummy",LastName="dummy"},
+                new Patient { NationalId= "123456" , Name="dummy",LastName="dummy"},
+                new Patient { NationalId= "1234567" , Name="dummy",LastName="dummy"},
+
+
+            };
+            _dataContext.Manipulate(_ =>
+            _.Patinets.AddRange(patients));
+
+            var doctor = new Doctor
+            {
+                LastName = "dummy",
+                Field = "dummy",
+                Name = "dummy",
+                NationalId = "123",
+            };
+            _dataContext.Manipulate(_ =>
+                _.Doctors.Add(doctor));
+        }
+
+
+        private void CreateFiveAppointments()
+        {
+            var appointment = new List<Appointment>
+            {
+                new Appointment { DoctorNationalId= "123" , PatientNationalId = "12" ,Date = DateTime.Now.Date},
+                new Appointment { DoctorNationalId= "123" , PatientNationalId = "123" ,Date = DateTime.Now.Date},
+                new Appointment { DoctorNationalId= "123" , PatientNationalId = "1234" ,Date = DateTime.Now.Date},
+                new Appointment { DoctorNationalId= "123" , PatientNationalId = "12345" ,Date = DateTime.Now.Date},
+                new Appointment { DoctorNationalId= "123" , PatientNationalId = "123456" ,Date = DateTime.Now.Date},
+            };
+            _dataContext.Manipulate(_ =>
+            _.Appointments.AddRange(appointment));
+        }
+
+
+            private AddAppointmentDto GenerateAppointmentDto(string id)
         {
             return new AddAppointmentDto
             {
                 DoctorNationalId = "123",
-                PatientNationalId = "123",
+                PatientNationalId = id,
                 Date = DateTime.Now.Date,
             };
         }

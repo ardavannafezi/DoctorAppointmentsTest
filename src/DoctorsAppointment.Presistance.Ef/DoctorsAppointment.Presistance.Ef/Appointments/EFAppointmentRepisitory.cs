@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace DoctorsAppointment.Presistance.EF.Appointments
 {
-    public class EFAppointmentRepisitory :AppointmentRepository
+    public class EFAppointmentRepisitory : AppointmentRepository
     {
         private readonly EFDataContext _dataContext;
 
@@ -22,6 +22,30 @@ namespace DoctorsAppointment.Presistance.EF.Appointments
         {
             _dataContext.Appointments.Add(appointment);
         }
+
+
+        public int AppointmentsPerDay(string doctorNationalId , DateTime date)
+        {
+
+            var doctorsappointments = _dataContext.Set<Appointment>()
+              .Where(_ => _.DoctorNationalId == doctorNationalId && _.Date == date)
+              .Select(_ => new Appointment
+              {
+                  DoctorNationalId = _.Doctor.NationalId,
+
+              });
+
+            var ApInDay = from a in _dataContext.Doctors
+                          join p in doctorsappointments on a.NationalId equals p.DoctorNationalId
+                          select new
+                          {
+                              date = p.Date,
+                              Id = a.NationalId,
+                          };
+
+            return ApInDay.Count();
+        }
+
 
         public IList<GetAppointmentDto> GetAll()
         {

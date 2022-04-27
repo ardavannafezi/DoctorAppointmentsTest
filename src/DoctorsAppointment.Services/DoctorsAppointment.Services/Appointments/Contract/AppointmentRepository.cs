@@ -15,5 +15,6 @@ namespace DoctorsAppointment.Services.Appointments.Contract
         Appointment GetById(int id);
         void Update(Appointment appointment);
         bool isExist(string doctorNationalId, string patientNationalId);
+        int AppointmentsPerDay(string doctorNationalId, DateTime date);
     }
 }
