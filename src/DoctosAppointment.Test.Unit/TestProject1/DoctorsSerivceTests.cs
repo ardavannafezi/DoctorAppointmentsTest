@@ -7,6 +7,7 @@ using DoctorsAppointment.Services.Doctors.Contracts;
 using DoctorsAppointmet.Entities;
 using FluentAssertions;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using Xunit;
 
@@ -96,21 +97,49 @@ namespace Test.Unit
             var doctor = CreateDoctorInDataBase();
 
             string nationalId = "123";
-            var dto = new UpdateDoctorDto
-            {
-                NationalId = "123",
-                Field = "field",
-                Name = "dummy2",
-                LastName = "Dummy2",
-            };
+            var dto = GenerateUpdateDoctorDto("123");
 
-             _sut.Update(dto, nationalId);
+            _sut.Update(dto, nationalId);
 
             var expected = _dataContext.Doctors
                 .FirstOrDefault(_ => _.NationalId == nationalId);
             expected.Name.Should().Be(dto.Name);
         }
 
+        [Fact]
+        public void Update_checks_if_another_doctor_exist_with_the_new_given_nationalId()
+        {
+            CreateDoctorListInDatabase();
 
+            string nationalId = "123";
+            var dto = GenerateUpdateDoctorDto("1234");
+            
+
+            Action expected = () => _sut.Update(dto, nationalId);
+            expected.Should().ThrowExactly<NationalIdExistForAnotherDoctor>();
+        }
+
+        public UpdateDoctorDto GenerateUpdateDoctorDto(string id)
+        {
+            return new UpdateDoctorDto
+            {
+                NationalId = id,
+                Field = "field",
+                Name = "dummy2",
+                LastName = "Dummy2",
+            };
+        }
+        private void CreateDoctorListInDatabase()
+        {
+            var doctors = new List<Doctor>
+            {
+                new Doctor { NationalId= "123" , Name="dummy",LastName="dummy",Field="dummy"},
+                new Doctor { NationalId= "1234" , Name="dummy",LastName="dummy",Field="dummy"},
+                new Doctor { NationalId= "12356" , Name="dummy",LastName="dummy",Field="dummy"},
+
+            };
+            _dataContext.Manipulate(_ =>
+            _.Doctors.AddRange(doctors));
+        }
     }
 }

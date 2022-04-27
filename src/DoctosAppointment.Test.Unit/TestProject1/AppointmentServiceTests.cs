@@ -109,7 +109,7 @@ namespace Test.Unit
         public void Update__Update_All_Appointments_informations_with_given_informations()
         {
             CreateDoctorInDatabase();
-            CreadeDoctorAndPatiendInDatabase()
+            CreadeDoctorAndPatiendInDatabase();
             var appointment = CreateAppointmentInDataBase();
             
           

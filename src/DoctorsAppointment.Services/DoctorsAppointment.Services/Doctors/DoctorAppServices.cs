@@ -52,6 +52,13 @@ namespace DoctorsAppointment.Services.Doctors
         {
            var doctor =  _repository.FindByNationalId(nationalId);
 
+           bool isExist = _repository.isDcotorExist(dto.NationalId);
+
+            if(isExist == true && dto.NationalId != nationalId)
+            {
+                throw new NationalIdExistForAnotherDoctor();
+            }
+
             doctor.NationalId = dto.NationalId;
             doctor.Name = dto.Name;
             doctor.LastName = dto.LastName;
